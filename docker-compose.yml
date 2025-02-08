@@ -1,0 +1,39 @@
+services:
+  frontend:
+    image: weather-application-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5273:5173"
+    volumes:
+      - ./frontend:/app
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
+  backend:
+    image: weather-application-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5274:5000"
+    volumes:
+      - ./backend:/app
+      - ./database:/data
+    environment:
+      - DATABASE_PATH=/data/weather.db
+    command: ["npm", "run", "dev"]
+    depends_on:
+      - database
+
+  database:
+    image: weather-application-db
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    volumes:
+      - ./database:/data
+    working_dir: /data
