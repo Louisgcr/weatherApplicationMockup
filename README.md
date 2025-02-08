@@ -1,17 +1,35 @@
 # Weather Application Mockup
 
-## Pre-requisites
+Weather application mockup is a simple application that allows users to view the weather of a location. The application is built using React and Node.js. The application uses the OpenWeatherMap API to fetch the weather data.
+
+## Mobile View
+
+<p align="center">
+  <img src="docs/mobile-light.png" alt="Mobile Light" width="300"/>
+  <img src="docs/mobile-dark.png" alt="Mobile Dark" width="300"/>
+</p>
+
+## Desktop View
+
+<p align="center">
+  <img src="docs/desktop-light.png" alt="Desktop Light" width="400"/>
+  <img src="docs/desktop-dark.png" alt="Desktop Dark" width="400"/>
+</p>
+
+# Pre-requisites
 
 - Docker
 - Docker Compose
 - Node.js
 - pnpm
 
-## Installation Ubuntu
+## Installation On Ubuntu
+
+Setup is tested on Ubuntu 20.04
 
 ### Docker
 
-Follow the instructions on the official website [https://docs.docker.com/engine/install/ubuntu/]
+Follow the instructions on the [official website](https://docs.docker.com/engine/install/ubuntu/)
 Add Docker's official GPG key:
 
 ```bash
@@ -69,29 +87,38 @@ nvm use 20
 npm install -g pnpm
 ```
 
+### Create your env file
+
+Get [OPENWEATHERMAP API Key](https://openweathermap.org/api) copy and paste the API key in the `.env` file
+
+```
+VITE_OPENWEATHER_API_KEY="YOUR_OPENWEATHERMAP_API_Key"
+VITE_BACKEND_URL="http://localhost:5274/api/v1"
+```
+
 ## Build and Run application
+
+This should build 3 containers (frontend, backend, and database)
 
 ```bash
 ./build_local.sh
 ```
 
-# SQLite
+# Frontend
 
-Go into
+- Vite as the build tool and development server
+- React.js
+- Tailwind CSS
+- TypeScript
+- Axios
+- pnpm as the package manager
 
-```
-docker exec -it weatherapplicationmockup-datebase-1 sh
-```
+# Backend
 
-Open SQLite
+- Node.js with Express.js
+- nodemon for development
 
-```
-sqlite3 weatger.sb
-```
+# Database - SQLite
 
-DB Commands
-
-```
-.tables
-.schema locations
-```
+- SQLite filebase database as it is simple and easy to use
+- SQLite is a serverless database that does not require a separate server process

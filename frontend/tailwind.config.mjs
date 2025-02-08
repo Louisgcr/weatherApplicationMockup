@@ -34,6 +34,9 @@ export default {
       padding: {
         '6.5': '1.625rem',
       },
+      fontFamily: {
+        sans: ['Noto Sans', 'sans-serif'],
+      },
       fontSize: {
         'xs': '0.5rem',
         'ssm': '0.646rem',

@@ -26,14 +26,3 @@ services:
     environment:
       - DATABASE_PATH=/data/weather.db
     command: ["npm", "run", "dev"]
-    depends_on:
-      - database
-
-  database:
-    image: weather-application-db
-    build:
-      context: ./database
-      dockerfile: Dockerfile
-    volumes:
-      - ./database:/data
-    working_dir: /data

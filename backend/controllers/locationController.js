@@ -1,8 +1,20 @@
+/**
+ * @file locationController.js
+ * @description Controller for managing locations in the weather application.
+ */
+
 const db = require('../db');
 
-// Get stored locations
+/**
+ * Get stored locations get sorted location based on time.
+ * 
+ * @function getLocations
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {void}
+ */
 exports.getLocations = (req, res) => {
-  db.all("SELECT id, name, country_code, created_at FROM locations", [], (err, rows) => {
+  db.all("SELECT id, name, country_code, created_at FROM locations ORDER BY created_at DESC", [], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -10,7 +22,14 @@ exports.getLocations = (req, res) => {
   });
 };
 
-// Add a new location
+/**
+ * Add a new location need user tp provide name and country code.
+ * 
+ * @function addLocation
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {void}
+ */
 exports.addLocation = (req, res) => {
   const { name, country_code } = req.body;
 
@@ -32,7 +51,14 @@ exports.addLocation = (req, res) => {
   });
 };
 
-// Delete a location
+/**
+ * Delete a location need user to provide id.
+ * 
+ * @function deleteLocation
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {void}
+ */
 exports.deleteLocation = (req, res) => {
   const id = req.params.id;
 
